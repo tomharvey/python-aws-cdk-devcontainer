@@ -1,3 +1,4 @@
+
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/python
 {
@@ -17,6 +18,9 @@
 	// Setup your container to use your AWS SSO start URL and region.
 	// "remoteEnv": {
 	// 	"AWS_DEFAULT_SSO_START_URL": "http://$AWS-ACCESS-PORTAL.awsapps.com/start#",
-	// 	"AWS_DEFAULT_SSO_REGION": "us-east-1"
+	//	// The region your SSO service is already configured in:
+	// 	"AWS_DEFAULT_SSO_REGION": "us-east-1",
+	//	// The region you want to deploy new services to:
+	//	"AWS_DEFAULT_REGION": "us-east-1"
 	// },
 }
