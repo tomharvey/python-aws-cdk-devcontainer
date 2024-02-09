@@ -22,5 +22,10 @@
 	// 	"AWS_DEFAULT_SSO_REGION": "us-east-1",
 	//	// The region you want to deploy new services to:
 	//	"AWS_DEFAULT_REGION": "us-east-1"
-	// },
+	// }
+
+	// If your AWS credentials are stored in `~/.aws/` you can share them with this:
+	//"mounts": [
+	//	"source=${localEnv:HOME}${localEnv:USERPROFILE}/.aws/,target=/home/vscode/.aws/,type=bind,consistency=cached"
+	//]
 }
