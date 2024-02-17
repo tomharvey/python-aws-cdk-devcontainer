@@ -1,31 +1,115 @@
-
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/python
 {
-	"name": "Python 3",
-	"image": "mcr.microsoft.com/devcontainers/python:1-3.11-bullseye",
+	// Give this a name that is useful to you. This will be shown in the VS Code
+	// Maybe use your app name, your company name or something else that makes sense to you.
+	"name": "My awesome developement environment",
+	// This specifies that we want to use a pre-built Python 3.11 container
+	// which is based on the Debian Bullseye OS.
+	"image": "mcr.microsoft.com/devcontainers/python:1-3.12-bullseye",
+
+	// The features are pre-installed capabilities that you can use in your development environment:
 	"features": {
-		// So i can interact with the AWS API:
+		// This is the AWS CLI allowing you to run `aws` commands in your terminal:
+		// https://aws.amazon.com/cli/
 		"ghcr.io/devcontainers/features/aws-cli:1": {},
-		// So i can build CDK apps:
+		
+		// This is the AWS CDK allowing you to use the AWS Cloud Development Kit:
+		// https://aws.amazon.com/cdk/
+		// And, bookmark https://docs.aws.amazon.com/cdk/api/v2/python/ for the Python API reference
 		"ghcr.io/devcontainers-contrib/features/aws-cdk:2": {},
-		// So I can build python lambdas for deployment through CDK:
-		"ghcr.io/devcontainers/features/docker-in-docker:2": {},
-		// So I can authenticate with profiles in AWS through SSO:
+
+		// This is the AWS SSO Util making it easier use AWS SSO to authenticate with AWS.
+		// You could opt to use static AWS IAM Keys instead. If you do - see further below
 		"ghcr.io/tomharvey/devcontainer-features/aws-sso-util:1": {}
+
+		// There are a lot of additional features you might want to install.
+		// https://containers.dev/features has a big list of what is available.
+		// Using these features saves you writing custom install scripts to install the tools you need.
+
+		// Docker in docker is a good one whaich allows you to create docker containers inside
+		// your dockerized development environment:
+		// "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+	},
+
+	// Add environment variables for your developer environment:
+	"remoteEnv": {
+		// The below needs to be configured to match your AWS SSO configuration if you're using AWS SSO.
+		// You could opt to use static AWS IAM Keys instead.
+		// If you do use static IAM keys, see further below for sharing `/.aws`
+		// between your local machine and your development environment.
+		"AWS_DEFAULT_SSO_START_URL": "https://d-123456.awsapps.com/start",
+		"AWS_DEFAULT_SSO_REGION": "us-east-1",
+
+		// This configures the region that you will create AWS resources in by default.
+		// It's common to pick one closer to you - I think it's unnessecary and us-east-1
+		// is the msot feature complete, the lowest cost and so is a good default.
+		"AWS_DEFAULT_REGION": "us-east-1"
+
+		// You can add more environment variables here if you need to.
+		// For example, you might want to add environment variables for your application
+		// like "FLASK_ENV": "development" or "DJANGO_SETTINGS_MODULE": "myapp.settings"
+	},
+
+	// You can add "mounts" here to mount local directories into your development environment.
+	"mounts": [
+		// This one will mount `~/.aws` into the development environment at `/home/vscode/.aws`.
+		// so any AWS configuration you have on your local machine will be available in your
+		// development environment.
+		// This is required if you're using static AWS IAM Keys.
+		// It's useful if you're using AWS SSO, and want to share your AWS config between all of your environments.
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.aws/,target=/home/vscode/.aws/,type=bind,consistency=cached"
+	],
+
+	// # The opinionated settings for the development environment.
+	// The below are the settings for the VS Code development environment,
+	// and how they will treat your code. You can delete all of this if you want to.
+	// BUt, they are sensible python defaults.
+	// You can add more settings here and should get to know them.
+	// These can be very specific to you - tabs vs spaces, line length, etc.
+	"customizations": {
+		"vscode": {
+			// Extensions are the plugins that you can install in VS Code.
+			// These add some great features to your development environment.
+			"extensions": [
+				// # Python features:
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				// Linting and formatting of your python code
+				"charliermarsh.ruff",
+				"ms-python.black-formatter",
+				// # Github features:
+				// Authenticate to github, review and manage your GitHub pull requests and issues directly in VS Code
+				// https://github.com/microsoft/vscode-pull-request-github
+				"github.vscode-pull-request-github",
+				// Git lens shows you in your code who last changed a line, and when.
+				// https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens
+				"eamodio.gitlens",
+				// # Additional features:
+				// Markdown linting keeps your markdown files looking good.
+				// https://github.com/DavidAnson/vscode-markdownlint
+				"davidanson.vscode-markdownlint",
+				// Github Co Pilot. I could add this to the github section, it's made by
+				// github but it's not about version control. It's about writing code.
+				// It's a bit like having a pair programmer with you.
+				// https://github.com/features/copilot
+				"GitHub.copilot"
+			],
+			"settings": {
+				"[python]": {
+					// Here we state that we want Ruff to automatically format our code on save.
+					// You might hate this - so you can delete it.
+					// Otherwise, it's a great way to keep you code using sensible formatting
+					// and to keep your code looking consistent.
+					"editor.codeActionsOnSave": {
+						"source.organizeImports": "always",
+						"source.fixAll": "explicit"
+					},
+					"editor.formatOnSave": true,
+					"editor.defaultFormatter": "charliermarsh.ruff"
+				},
+				"python.defaultInterpreterPath": "/usr/local/bin/python"
+			}
+		}
 	}
-
-	// Setup your container to use your AWS SSO start URL and region.
-	// "remoteEnv": {
-	// 	"AWS_DEFAULT_SSO_START_URL": "http://$AWS-ACCESS-PORTAL.awsapps.com/start#",
-	//	// The region your SSO service is already configured in:
-	// 	"AWS_DEFAULT_SSO_REGION": "us-east-1",
-	//	// The region you want to deploy new services to:
-	//	"AWS_DEFAULT_REGION": "us-east-1"
-	// }
-
-	// If your AWS credentials are stored in `~/.aws/` you can share them with this:
-	//"mounts": [
-	//	"source=${localEnv:HOME}${localEnv:USERPROFILE}/.aws/,target=/home/vscode/.aws/,type=bind,consistency=cached"
-	//]
+	// For more details about this file, see https://aka.ms/devcontainer.json.
+	// For config options, see the README at: https://github.com/devcontainers/templates/tree/main/src/python
 }
