@@ -1,9 +1,11 @@
 {
 	// Give this a name that is useful to you. This will be shown in the VS Code
-	// Maybe use your app name, your company name or something else that makes sense to you.
+	// Maybe use your app name, your company name ... something that makes sense to you.
 	"name": "My awesome developement environment",
-	// This specifies that we want to use a pre-built Python 3.11 container
+	// This specifies that we want to use a pre-built Python 3.12 container
 	// which is based on the Debian Bullseye OS.
+	// And "Bullseye" is the name of the latest version of Debian.
+	// https://www.debian.org
 	"image": "mcr.microsoft.com/devcontainers/python:1-3.12-bullseye",
 
 	// The features are pre-installed capabilities that you can use in your development environment:
