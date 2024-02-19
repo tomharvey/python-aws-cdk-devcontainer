@@ -76,6 +76,7 @@
 				// Linting and formatting of your python code
 				"charliermarsh.ruff",
 				"ms-python.black-formatter",
+
 				// # Github features:
 				// Authenticate to github, review and manage your GitHub pull requests and issues directly in VS Code
 				// https://github.com/microsoft/vscode-pull-request-github
@@ -83,8 +84,8 @@
 				// Git lens shows you in your code who last changed a line, and when.
 				// https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens
 				"eamodio.gitlens",
-				// # Additional features:
 
+				// # Additional features:
 				// AWS Toolkit
 				// Provides a rich set of tools for working with AWS services from within VS Code.
 				// Allowing you to explore the services you've deployed, and use CodeWhisperer.
