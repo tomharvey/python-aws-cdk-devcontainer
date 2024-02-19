@@ -111,7 +111,7 @@
 				"[python]": {
 					// Here we state that we want Ruff to automatically format our code on save.
 					// You might hate this - you can delete it.
-					// Otherwise, it's a great way toenforce sensible and consistent
+					// Otherwise, it's a great way to enforce sensible and consistent
 					// formatting on your code.
 					"editor.codeActionsOnSave": {
 						"source.organizeImports": "always",
