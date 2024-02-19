@@ -35,7 +35,7 @@
 	},
 
 	// Add environment variables for your developer environment:
-	"remoteEnv": {
+	"containerEnv": {
 		// The below needs to be configured to match your AWS SSO configuration if you're using AWS SSO.
 		// You could opt to use static AWS IAM Keys instead.
 		// If you do use static IAM keys, see further below for sharing `/.aws`
