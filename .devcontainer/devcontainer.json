@@ -97,6 +97,7 @@
 				"amazonwebservices.aws-toolkit-vscode",
 
 				// Markdown linting keeps your markdown files looking good.
+				// and, it's a good idea to use Markdown for your documentation.
 				// https://github.com/DavidAnson/vscode-markdownlint
 				"davidanson.vscode-markdownlint",
 
@@ -109,9 +110,9 @@
 			"settings": {
 				"[python]": {
 					// Here we state that we want Ruff to automatically format our code on save.
-					// You might hate this - so you can delete it.
-					// Otherwise, it's a great way to keep you code using sensible formatting
-					// and to keep your code looking consistent.
+					// You might hate this - you can delete it.
+					// Otherwise, it's a great way toenforce sensible and consistent
+					// formatting on your code.
 					"editor.codeActionsOnSave": {
 						"source.organizeImports": "always",
 						"source.fixAll": "explicit"
