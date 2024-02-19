@@ -84,9 +84,16 @@
 				// https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens
 				"eamodio.gitlens",
 				// # Additional features:
+
+				// AWS Toolkit
+				// Provides a rich set of tools for working with AWS services from within VS Code.
+				// Allowing you to explore the services you've deployed, and use CodeWhisperer.
+				"amazonwebservices.aws-toolkit-vscode",
+
 				// Markdown linting keeps your markdown files looking good.
 				// https://github.com/DavidAnson/vscode-markdownlint
 				"davidanson.vscode-markdownlint",
+
 				// Github Co Pilot. I could add this to the github section, it's made by
 				// github but it's not about version control. It's about writing code.
 				// It's a bit like having a pair programmer with you.
